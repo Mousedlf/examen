@@ -98,10 +98,10 @@ function getCommentTemplate(comment){
                             <h6 class="card-title mb-0 fw-bold">${comment.user.username}:</h6>
                             <p class="mb-2">${comment.content}</p>
                         </div>
-                        <i id="${comment.id}" class="delete ms-2 fa-solid fa-trash"></i>
+                        <i id="${comment.id}" class="commentDelete ms-2 fa-solid fa-trash"></i>
                     </div>
                     <div class="input-group mt-3">
-                        <input type="text" class="postContent form-control" placeholder="Type in your new comment then press on the pen">
+                        <input type="text" class="commentContent form-control" placeholder="Type in your new comment then press on the pen">
                         <span class="input-group-text" id="basic-addon2"><i id="${comment.id}" class="edit fa-solid fa-pen"></i></span>
                     </div>
                 </div>
@@ -118,6 +118,13 @@ function getCommentTemplate(comment){
                     `
     }
     return template
+}
+function getCommentsTemplate(comments){
+    let commentsTemplate = ""
+    comments.forEach(comment =>{
+        commentsTemplate += getCommentTemplate(comment)
+    })
+    return commentsTemplate
 }
 
 
@@ -153,6 +160,7 @@ async function displayPosts() {
             })
         })
 
+
         // All edit buttons
         const editButtons = document.querySelectorAll('.edit')
         editButtons.forEach(editButton =>{
@@ -172,6 +180,7 @@ async function displayPosts() {
     })
 }
 
+
 // AFFICHER UN SEUL POST
 function displayOnePost(id){
     let url = `${baseURL}b1devweb/api/posts/${id}`
@@ -187,31 +196,31 @@ function displayOnePost(id){
             let comments = post.comments
             comments.forEach(comment =>{
                 console.log(comment)
-                getCommentTemplate(comment)
+
+                let patate = ""
+                getPostTemplate(post)
+                patate += getCommentTemplate(comment)
+                display(getPostTemplate(post) + patate)
             })
-            display(getPostTemplate(post))
+
+            // All comment delete buttons
+            const commentDelButtons = document.querySelectorAll('.commentDelete')
+            commentDelButtons.forEach(commentDelButton =>{
+                commentDelButton.addEventListener('click', ()=>{
+                    deleteMyComment(commentDelButton.id)
+                })
+            })
+
+            // All comment edit buttons
+            const editButtons = document.querySelectorAll('.edit')
+            editButtons.forEach(editButton =>{
+                editButton.addEventListener('click', ()=>{
+                    editMyPost(editButton.id)
+                })
+            })
 
         })
 }
-
-
-let messagesAndMessageField = ""
-
-getMessagesFromApi().then(messages=>{
-
-
-    messagesAndMessageField+=getMessagesTemplate(messages)
-    messagesAndMessageField+=getMessageFieldTemplate()
-
-    display(messagesAndMessageField)
-
-    const messageField = document.querySelector("#messageField")
-
-    const sendButton = document.querySelector("#sendMessage")
-    sendButton.addEventListener("click", sendMessage)
-
-
-})
 
 
 // FAIRE APPARAITRE REGISTER
@@ -337,10 +346,14 @@ function editMyPost(id){
 }
 
 
-/*
+
+/* Je n'arrivais pas a afficher les commentaires hors de la console ducoup
+j'ai pas vraiment essayé d'en créer ou editer ..
+le code ci-dessous n'est pas fonctionnel. */
+
 // COMMENTER UN POST
 function commentPost(postId){
-    let url = `${baseURL}b1devweb/api/comment/${postIid}`
+    let url = `${baseURL}b1devweb/api/comment/${postIi}`
     let body = {
         content: messageField.value
     }
@@ -395,9 +408,8 @@ function editMyComment(id){
         .then(data =>{
             console.log(data)
             console.log('edit comment')
-            //displayPosts()
+
         })
 }
 
-*/
 
