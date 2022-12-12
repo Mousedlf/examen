@@ -14,7 +14,32 @@
     <title>Partiel</title>
 </head>
 
-<body>
+<body class="row">
+
+<div class="col-5 vh-100">
+    <div class="d-flex flex-column">
+        <span class="fw-bold text-uppercase mt-1">Log In</span>
+        <input type="text" name="" id="usernameLogin" placeholder="username">
+        <input type="password" name="" id="passwordLogin" placeholder="password" class="mt-1">
+        <button class="btn btn-primary mt-2" id="loginButton">log in</button>
+    </div>
+
+    <div class="register d-flex ">
+        <div class="container d-flex flex-column">
+            <span class="fw-bold text-uppercase mt-1">Register</span>
+            <input type="text" id="usernameRegister" placeholder="username">
+            <input type="password" id="passwordRegister" placeholder="password" class="mt-1">
+            <button class="btn btn-primary mt-2" id="register">register</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-7">
+    <button class="retrievePosts btn btn-success">Get posts</button>
+    <div id="mainContainer" class=" bg-warning vh-50 hauteur80 overflow-auto">ici les posts</div>
+</div>
+
+
 
 
 <script src="js/main.js"></script>
