@@ -17,10 +17,11 @@
 <body class="px-3 row vw-100 vh-100">
     <div class="col-2 vh-100 d-flex bg-light flex-column justify-content-between pb-3">
         <div>
-            <button class="retrievePosts btn btn-success mt-2 mb-3">Get blog posts</button>
+            <button class="retrievePosts btn btn-success mt-2 mb-3">Get all blog posts</button>
             <p id="yourUsername" class="fw-bold displayFromMedium mb-4"></p>
         </div>
         <div>
+            <!-- LOGIN -->
             <div class="d-flex flex-column">
                 <span class="fw-bold text-uppercase mt-1">Log In</span>
                 <input type="text" name="" id="usernameLogin" placeholder="username">
@@ -28,9 +29,10 @@
                 <button class="btn btn-primary mt-2" id="loginButton">log in</button>
                 <span id="errorMessageLogin" class="text-danger"></span>
             </div>
-            <span class="mt-3 mb-0 d-flex">
-                <p>No account yet? </p>
-                <p id="displayRegisterPage" class="ms-2 text-decoration-underline">Register here</p>
+            <!-- REGISTER -->
+            <span class="mt-3 mb-0 d-flex flex-column">
+                <p class="mb-0">No account yet? </p>
+                <span id="displayRegisterPage" class="text-decoration-underline text-info mb-3">Register here</span>
             </span>
             <div class="register d-none d-flex pb-3">
                 <div class="container d-flex flex-column">
