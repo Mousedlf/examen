@@ -92,7 +92,7 @@ function getCommentTemplate(comment){
     if(comment.user.username == myUsername){
         template = `
                     <div class="card m-3">
-                <div class="card-body d-flex flex-column">
+                <div class="card-body bg-light d-flex flex-column">
                     <div class="d-flex justify-content-between">
                         <div>
                             <h6 class="card-title mb-0 fw-bold">${comment.user.username}:</h6>
